@@ -1,0 +1,108 @@
+---
+title: "678 final"
+author: "xiaoyanbin Cai"
+date: "2022-12-01"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Data Background
+I decided to choose the data set that includes the information on the number of testes of individuals for COVID-19 infection performed in New York City beginning March 1, 2020 which was the date that COVID-19 was first identified in the state.
+
+#Loading library
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(boot)
+library(car)
+#library(readxl)
+library(lme4)          
+library(lmerTest) 
+library(plyr) 
+library(Hmisc)
+```
+
+#Importing data
+```{r}
+airbnb <- read.csv("~/Desktop/678-final-project/airbnb.csv")#Import data
+summary(airbnb)#check the summary of the data
+type <- unique(airbnb$neighbourhood)#to see how many groups are in the data
+#NYC_19 <- read.csv("~/Desktop/678-final-project/New_York_State_Statewide_COVID-19_Testing.csv")
+#head(NYC_19)
+#summary(NYC_19)#summary to see the overall information about this dataset. So that would be more clear for me to know which variables should I analiezed,
+
+#my_data <- read_excel("~/Desktop/678-final-project/climate.xlsx")
+```
+
+## Including Plots
+
+You can also embed plots, for example: I'm trying to do visualization about cumulative number of tests performed in NYC to that would be more straight forward to see.
+
+```{r}
+#Using ggplot to see the cumulative number of tests performed of different counties in NYC.
+ggplot(NYC_19, aes(x = Cumulative.Number.of.Tests.Performed,fill=County)) +
+    geom_histogram(bins=5) +
+    ggtitle("cumulative # of test performed in NYC in differnt counties")
+```
+
+```{r}
+#making some simple 
+ggplot(NYC_19, aes(x = New.Positives, y = Cumulative.Number.of.Positives, color = County)) +
+  geom_point(show.legend = FALSE) +
+  #geom_point(bins=5)+
+  facet_wrap(~County)
+```
+
+
+
+```{r}
+#Forming linear regression between cumulative number of positives and new positives
+model <- glm(Cumulative.Number.of.Positives ~ New.Positives, data = NYC_19, family = poisson)
+#glm.diag.plots(model)
+# output plots in a 2 x 2 grid 
+par(mfrow = c(2,2)) 
+
+# diagnostic plots
+plot(model)
+summary(model)
+avPlots(model)
+```
+# As we can see from above, they do not look like good expression of regression. Since there's doesn't have cloud-like shape on residuals 
+
+```{r}
+
+#model_2 <- glm(Cumulative.Number.of.Positives, # formula
+             #data = NYC_19, # dataset
+             #family = ("gaussian")) # fit a poisson model
+
+# output plots in a 2 x 2 grid 
+#par(mfrow = c(2,2)) 
+
+# diagnostic plots
+#plot(model_2)
+```
+
+```{r}
+# plot & add a regression line
+ggplot(NYC_19, aes(x = New.Positives, y = Cumulative.Number.of.Positives)) + # draw a 
+    geom_point() + # add points
+    geom_smooth(method = "glm", # plot a regression...
+    method.args = list(family = "poisson")) # ...from the binomial family
+```
+#As we can see the above linear regression, data are not quite fit the linear regression. So that this might not be a proper linear regression of this data.
+
+```{r}
+#Data preparation
+nyc19_imeans <- ddply(NYC_19, "Test...Positive",
+                       positive_trait = mean(Cumulative.Number.of.Positives, na.rm=TRUE),
+                       test_trait = mean(Test...Positive, na.rm=TRUE))
+describe(nyc19_imeans)
+```
+
+```{r}
+
+```
+
