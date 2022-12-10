@@ -1,0 +1,855 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={678 final},
+  pdfauthor={xiaoyanbin Cai},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{678 final}
+\author{xiaoyanbin Cai}
+\date{2022-12-01}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tinytex}\SpecialCharTok{::}\NormalTok{reinstall\_tinytex}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## function (packages = TRUE, dir = tinytex_root(), ...) 
+## {
+##     pkgs = if (packages) 
+##         tl_pkgs()
+##     if (length(pkgs)) 
+##         message("If reinstallation fails, try install_tinytex() again. Then ", 
+##             "install the following packages:\n\ntinytex::tlmgr_install(c(", 
+##             paste("\"", pkgs, "\"", sep = "", collapse = ", "), 
+##             "))\n")
+##     if (length(list.files(texmf <- file.path(dir, "texmf-local"), 
+##         recursive = TRUE)) > 0) {
+##         dir.create(texmf_tmp <- tempfile(), recursive = TRUE)
+##         message("The directory ", texmf, " is not empty. It will be backed up to ", 
+##             texmf_tmp, " and restored later.\n")
+##         file.copy(texmf, texmf_tmp, recursive = TRUE)
+##         on.exit(file.copy(file.path(texmf_tmp, basename(texmf)), 
+##             dirname(texmf), recursive = TRUE), add = TRUE)
+##     }
+##     uninstall_tinytex()
+##     install_tinytex(extra_packages = pkgs, dir = dir, ...)
+## }
+## <bytecode: 0x1079522d8>
+## <environment: namespace:tinytex>
+\end{verbatim}
+
+\hypertarget{data-background}{%
+\subsection{Data Background}\label{data-background}}
+
+I decided to choose the Airbnb data set that related to Masachuesstt as
+my
+
+\#Loading library
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.2 --
+## v ggplot2 3.4.0      v purrr   0.3.5 
+## v tibble  3.1.8      v dplyr   1.0.10
+## v tidyr   1.2.1      v stringr 1.4.1 
+## v readr   2.1.3      v forcats 0.5.2 
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(lme4)          }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: Matrix
+## 
+## Attaching package: 'Matrix'
+## 
+## The following objects are masked from 'package:tidyr':
+## 
+##     expand, pack, unpack
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lmerTest) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lmerTest'
+## 
+## The following object is masked from 'package:lme4':
+## 
+##     lmer
+## 
+## The following object is masked from 'package:stats':
+## 
+##     step
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plyr) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## ------------------------------------------------------------------------------
+## You have loaded plyr after dplyr - this is likely to cause problems.
+## If you need functions from both plyr and dplyr, please load plyr first, then dplyr:
+## library(plyr); library(dplyr)
+## ------------------------------------------------------------------------------
+## 
+## Attaching package: 'plyr'
+## 
+## The following objects are masked from 'package:dplyr':
+## 
+##     arrange, count, desc, failwith, id, mutate, rename, summarise,
+##     summarize
+## 
+## The following object is masked from 'package:purrr':
+## 
+##     compact
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+## 
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(leaflet)}
+\FunctionTok{library}\NormalTok{(coefplot)}
+\FunctionTok{library}\NormalTok{(tinytex)}
+\end{Highlighting}
+\end{Shaded}
+
+\#\#Importing data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airbnb1 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Desktop/678{-}final{-}project/airbnb.csv"}\NormalTok{)}\CommentTok{\#Import data}
+\NormalTok{airbnb2 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Desktop/678{-}final{-}project/13.6.2022.csv"}\NormalTok{)}
+\NormalTok{airbnb3 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Desktop/678{-}final{-}project/20.3.2022.csv"}\NormalTok{)}
+\NormalTok{airbnb4 }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"\textasciitilde{}/Desktop/678{-}final{-}project/17.12.2021.csv"}\NormalTok{)}
+\NormalTok{airbnb5 }\OtherTok{=}\NormalTok{ dplyr}\SpecialCharTok{::}\FunctionTok{bind\_rows}\NormalTok{(airbnb1,airbnb2,airbnb3,airbnb4)}\CommentTok{\#to combine all the airbnb data in MA}
+\FunctionTok{summary}\NormalTok{(airbnb5)}\CommentTok{\#check the summary of the raw data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        id                name              host_id           host_name        
+##  Min.   :3.168e+03   Length:14803       Min.   :     3697   Length:14803      
+##  1st Qu.:1.936e+07   Class :character   1st Qu.: 18517776   Class :character  
+##  Median :4.035e+07   Mode  :character   Median : 88140341   Mode  :character  
+##  Mean   :6.495e+16                      Mean   :128865563                     
+##  3rd Qu.:5.104e+07                      3rd Qu.:222978210                     
+##  Max.   :7.203e+17                      Max.   :479130189                     
+##                                                                               
+##  neighbourhood_group neighbourhood         latitude       longitude     
+##  Mode:logical        Length:14803       Min.   :42.23   Min.   :-71.20  
+##  NA's:14803          Class :character   1st Qu.:42.33   1st Qu.:-71.11  
+##                      Mode  :character   Median :42.35   Median :-71.08  
+##                                         Mean   :42.35   Mean   :-71.09  
+##                                         3rd Qu.:42.36   3rd Qu.:-71.06  
+##                                         Max.   :42.42   Max.   :-70.92  
+##                                                                         
+##   room_type             price         minimum_nights    number_of_reviews
+##  Length:14803       Min.   :    0.0   Min.   :   1.00   Min.   :   0.00  
+##  Class :character   1st Qu.:   96.0   1st Qu.:   2.00   1st Qu.:   0.00  
+##  Mode  :character   Median :  165.0   Median :  28.00   Median :   8.00  
+##                     Mean   :  218.6   Mean   :  30.89   Mean   :  44.28  
+##                     3rd Qu.:  256.0   3rd Qu.:  32.00   3rd Qu.:  50.00  
+##                     Max.   :10000.0   Max.   :1000.00   Max.   :1489.00  
+##                                                                          
+##  last_review        reviews_per_month calculated_host_listings_count
+##  Length:14803       Min.   : 0.01     Min.   :  1.00                
+##  Class :character   1st Qu.: 0.29     1st Qu.:  2.00                
+##  Mode  :character   Median : 1.00     Median :  7.00                
+##                     Mean   : 1.74     Mean   : 43.12                
+##                     3rd Qu.: 2.54     3rd Qu.: 33.00                
+##                     Max.   :43.37     Max.   :399.00                
+##                     NA's   :3840                                    
+##  availability_365 number_of_reviews_ltm   license         
+##  Min.   :  0.0    Min.   :  0.00        Length:14803      
+##  1st Qu.: 70.0    1st Qu.:  0.00        Class :character  
+##  Median :195.0    Median :  1.00        Mode  :character  
+##  Mean   :190.4    Mean   : 11.12                          
+##  3rd Qu.:317.0    3rd Qu.: 13.00                          
+##  Max.   :365.0    Max.   :553.00                          
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#As we can see from summary, there\textquotesingle{}re some NA values in neighbourhood\_group and reviews\_per\_month.}
+
+
+\NormalTok{type }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(airbnb5}\SpecialCharTok{$}\NormalTok{neighbourhood)}\CommentTok{\#to see how many groups are in the data}
+\FunctionTok{head}\NormalTok{(airbnb5)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      id                                               name host_id host_name
+## 1  7903         Colorful, modern 2 BR apt shared with host   14169     Stacy
+## 2  8521   SunsplashedSerenity walk to Harvard & Fresh Pond  306681     Janet
+## 3  8789                Curved Glass Studio/1bd facing Park   26988      Anne
+## 4 10813 Back Bay Apt-blocks to subway, Newbury St, The Pru   38997  Michelle
+## 5 10986 North End (Waterfront area)  CLOSE TO MGH & SUBWAY   38997  Michelle
+## 6 11169    Lovely Studio Room: Available for long weekends   40965      Judy
+##   neighbourhood_group   neighbourhood latitude longitude       room_type price
+## 1                  NA         Agassiz 42.39031 -71.09361    Private room   118
+## 2                  NA  West Cambridge 42.38258 -71.13646 Entire home/apt   300
+## 3                  NA  East Cambridge 42.35867 -71.06307 Entire home/apt   110
+## 4                  NA      Area 2/MIT 42.35061 -71.08787 Entire home/apt   135
+## 5                  NA  East Cambridge 42.36377 -71.05206 Entire home/apt   135
+## 6                  NA North Cambridge 42.39630 -71.13135    Private room   116
+##   minimum_nights number_of_reviews last_review reviews_per_month
+## 1              4               295  2022-09-06              1.83
+## 2              2                50  2022-08-28              0.31
+## 3             91                25  2020-04-15              0.25
+## 4             29                 5  2020-12-02              0.06
+## 5             33                 2  2016-05-23              0.03
+## 6              3               160  2022-09-05              1.05
+##   calculated_host_listings_count availability_365 number_of_reviews_ltm
+## 1                              1               10                    16
+## 2                              2              258                     5
+## 3                              5              279                     0
+## 4                             11              355                     0
+## 5                             11              356                     0
+## 6                              2              331                    11
+##       license
+## 1            
+## 2 C0121120491
+## 3            
+## 4            
+## 5            
+## 6
+\end{verbatim}
+
+\#\#Basic data information and data cleaning
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{head}\NormalTok{(airbnb5[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\SpecialCharTok{:}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{17}\NormalTok{)]))}\CommentTok{\#extract the main data columns that I need to analyze}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in 9:11:12: numerical expression has 3 elements: only the first used
+\end{verbatim}
+
+\begin{tabular}{r|l|r|l|l|r|r|r|r|r|r|r}
+\hline
+id & name & host\_id & neighbourhood & room\_type & price & minimum\_nights & number\_of\_reviews & reviews\_per\_month & calculated\_host\_listings\_count & availability\_365 & number\_of\_reviews\_ltm\\
+\hline
+7903 & Colorful, modern 2 BR apt shared with host & 14169 & Agassiz & Private room & 118 & 4 & 295 & 1.83 & 1 & 10 & 16\\
+\hline
+8521 & SunsplashedSerenity walk to Harvard \& Fresh Pond & 306681 & West Cambridge & Entire home/apt & 300 & 2 & 50 & 0.31 & 2 & 258 & 5\\
+\hline
+8789 & Curved Glass Studio/1bd facing Park & 26988 & East Cambridge & Entire home/apt & 110 & 91 & 25 & 0.25 & 5 & 279 & 0\\
+\hline
+10813 & Back Bay Apt-blocks to subway, Newbury St, The Pru & 38997 & Area 2/MIT & Entire home/apt & 135 & 29 & 5 & 0.06 & 11 & 355 & 0\\
+\hline
+10986 & North End (Waterfront area)  CLOSE TO MGH \& SUBWAY & 38997 & East Cambridge & Entire home/apt & 135 & 33 & 2 & 0.03 & 11 & 356 & 0\\
+\hline
+11169 & Lovely Studio Room: Available for long weekends & 40965 & North Cambridge & Private room & 116 & 3 & 160 & 1.05 & 2 & 331 & 11\\
+\hline
+\end{tabular}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{airbnb6 }\OtherTok{=}\NormalTok{ airbnb5[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{9}\SpecialCharTok{:}\DecValTok{11}\SpecialCharTok{:}\DecValTok{12}\NormalTok{,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{17}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in 9:11:12: numerical expression has 3 elements: only the first used
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(airbnb6)}\CommentTok{\#check the summary of the new data frame}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        id                name              host_id          neighbourhood     
+##  Min.   :3.168e+03   Length:14803       Min.   :     3697   Length:14803      
+##  1st Qu.:1.936e+07   Class :character   1st Qu.: 18517776   Class :character  
+##  Median :4.035e+07   Mode  :character   Median : 88140341   Mode  :character  
+##  Mean   :6.495e+16                      Mean   :128865563                     
+##  3rd Qu.:5.104e+07                      3rd Qu.:222978210                     
+##  Max.   :7.203e+17                      Max.   :479130189                     
+##                                                                               
+##   room_type             price         minimum_nights    number_of_reviews
+##  Length:14803       Min.   :    0.0   Min.   :   1.00   Min.   :   0.00  
+##  Class :character   1st Qu.:   96.0   1st Qu.:   2.00   1st Qu.:   0.00  
+##  Mode  :character   Median :  165.0   Median :  28.00   Median :   8.00  
+##                     Mean   :  218.6   Mean   :  30.89   Mean   :  44.28  
+##                     3rd Qu.:  256.0   3rd Qu.:  32.00   3rd Qu.:  50.00  
+##                     Max.   :10000.0   Max.   :1000.00   Max.   :1489.00  
+##                                                                          
+##  reviews_per_month calculated_host_listings_count availability_365
+##  Min.   : 0.01     Min.   :  1.00                 Min.   :  0.0   
+##  1st Qu.: 0.29     1st Qu.:  2.00                 1st Qu.: 70.0   
+##  Median : 1.00     Median :  7.00                 Median :195.0   
+##  Mean   : 1.74     Mean   : 43.12                 Mean   :190.4   
+##  3rd Qu.: 2.54     3rd Qu.: 33.00                 3rd Qu.:317.0   
+##  Max.   :43.37     Max.   :399.00                 Max.   :365.0   
+##  NA's   :3840                                                     
+##  number_of_reviews_ltm
+##  Min.   :  0.00       
+##  1st Qu.:  0.00       
+##  Median :  1.00       
+##  Mean   : 11.12       
+##  3rd Qu.: 13.00       
+##  Max.   :553.00       
+## 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Airbnb }\OtherTok{=} \FunctionTok{na.omit}\NormalTok{(airbnb6)}\CommentTok{\#elimate NA values in data set}
+\NormalTok{Airbnb }\OtherTok{\textless{}{-}}\NormalTok{ Airbnb }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Airbnb}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
+\NormalTok{Airbnb2 }\OtherTok{\textless{}{-}}\NormalTok{ Airbnb }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Airbnb}\SpecialCharTok{$}\NormalTok{number\_of\_reviews }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
+\NormalTok{Airbnb2}\SpecialCharTok{$}\NormalTok{id }\OtherTok{=} \FunctionTok{as.character}\NormalTok{(Airbnb2}\SpecialCharTok{$}\NormalTok{id)}
+\NormalTok{Airbnb2}\SpecialCharTok{$}\NormalTok{host\_id }\OtherTok{=} \FunctionTok{as.character}\NormalTok{(Airbnb2}\SpecialCharTok{$}\NormalTok{host\_id)}
+\FunctionTok{length}\NormalTok{(Airbnb2}\SpecialCharTok{$}\NormalTok{price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10957
+\end{verbatim}
+
+*As we can see from new data frame summary, there're some NA values in
+neighbourhood\_group and reviews\_per\_month. So that I need to elimate
+all the NA values that include in price and number\_of\_reviews. After
+that we get 10957 results in total
+
+\#\#Table about room type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{table}\NormalTok{(Airbnb2}\SpecialCharTok{$}\NormalTok{room\_type))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r}
+\hline
+Var1 & Freq\\
+\hline
+Entire home/apt & 6937\\
+\hline
+Hotel room & 64\\
+\hline
+Private room & 3919\\
+\hline
+Shared room & 37\\
+\hline
+\end{tabular}
+
+*As we can see from above,home/apt has the largest number in the table
+which is 6937. So that we can see how the relationship between the
+most-used room type and the price.
+
+\hypertarget{eda}{%
+\subsection{EDA}\label{eda}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ Airbnb2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ number\_of\_reviews, }\AttributeTok{y =}\NormalTok{ price, }\AttributeTok{color =}\NormalTok{ room\_type)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{()}\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Relationship between price and \# of reviews of different room type"}\NormalTok{)}
+\FunctionTok{show}\NormalTok{(plot1)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{plot2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data =}\NormalTok{ Airbnb2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ number\_of\_reviews, }\AttributeTok{y =}\NormalTok{ price)) }\SpecialCharTok{+}
+    \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+    \FunctionTok{facet\_wrap}\NormalTok{(}\AttributeTok{facets =} \FunctionTok{vars}\NormalTok{(room\_type))  }
+\FunctionTok{show}\NormalTok{(plot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-6-2.pdf}
+*I made two linear graphs about relation between price and number of
+reviews of different room types. As we can see from 'plot2'entire
+home/apt has the most number of reviews and change of price is relative
+stable than that of other room type. And for shared room which has the
+most small number of reviews and the price of shared room is almost the
+same.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Fig of average number of reviews per neighbourhood}
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{Airbnb2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{neighbourhood, }\AttributeTok{y=}\NormalTok{ number\_of\_reviews))}\SpecialCharTok{+}\FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,  }\AttributeTok{fill =} \StringTok{"pink"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Average number of reviews per neighbourhood"}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{ylab}\NormalTok{(}\StringTok{"Frequency of reviews"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{30}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-7-1.pdf}
+*As we can see from the graph above, Allston has the highest number of
+reviews and East Boston is second highest and Dorchester is the third
+one.
+
+*Fig of average price per neighbourhood
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{Airbnb2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{(neighbourhood), }\AttributeTok{y=}\NormalTok{ price))}\SpecialCharTok{+}\FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{,  }\AttributeTok{fill =} \StringTok{"pink"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Average price per neighbourhood"}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{ylab}\NormalTok{(}\StringTok{"Average price"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{30}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-8-1.pdf}
+*Fig of distribution of number of reviews
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Airbnb2, }\FunctionTok{aes}\NormalTok{(number\_of\_reviews))}\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{5}\NormalTok{,}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"sky blue"}\NormalTok{)}\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Distribution of number of reviews"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{ (}\StringTok{"frequency of reviews"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"number of review"}\NormalTok{)}\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{200}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 827 rows containing non-finite values (`stat_bin()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-9-1.pdf}
+*According to the graph above, we can see that the majority of airbnb
+have less than 100 reviews
+
+*\#Using leaflet to make a map of Airbnb in MA
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Boston\_area\_map }\OtherTok{\textless{}{-}} \FunctionTok{leaflet}\NormalTok{(airbnb5) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{addTiles}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{addCircleMarkers}\NormalTok{(}\AttributeTok{lng =}\NormalTok{ airbnb5}\SpecialCharTok{$}\NormalTok{longitude,}
+                   \AttributeTok{lat =}\NormalTok{ airbnb5}\SpecialCharTok{$}\NormalTok{latitude)}
+\FunctionTok{show}\NormalTok{(Boston\_area\_map)}
+\end{Highlighting}
+\end{Shaded}
+
+*To see how the correlation between price and minimum nights. Because
+higher price may affect the number of reviews.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cor }\OtherTok{\textless{}{-}} \FunctionTok{cor.test}\NormalTok{(Airbnb2}\SpecialCharTok{$}\NormalTok{minimum\_nights,Airbnb2}\SpecialCharTok{$}\NormalTok{price,}
+                \AttributeTok{method=}\StringTok{"pearson"}\NormalTok{)}
+\NormalTok{cor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  Airbnb2$minimum_nights and Airbnb2$price
+## t = -7.6544, df = 10955, p-value = 2.105e-14
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.09153639 -0.05428648
+## sample estimates:
+##         cor 
+## -0.07293687
+\end{verbatim}
+
+*The p-value is 2.105e-14. So it reject the null hypothesis. So the
+correlation between price and minimum nights is significant. I might
+want to add the correlation term into the model to test whether this
+influence is significant.
+
+*Distribution of room price
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Airbnb2, }\FunctionTok{aes}\NormalTok{(price))}\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{50}\NormalTok{, }\AttributeTok{color =} \StringTok{"light yellow"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"orange"}\NormalTok{)}\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{" Distribution of room price"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{ (}\StringTok{"Frequency of price"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"Price"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{+}\FunctionTok{xlim}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 78 rows containing non-finite values (`stat_bin()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+*Since from the graph above, price does not present as normal
+distribution so that I need to do the log transformation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{price\_t }\OtherTok{\textless{}{-}}\NormalTok{ Airbnb2}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{logprice =} \FunctionTok{log}\NormalTok{(price))}
+\FunctionTok{ggplot}\NormalTok{(Airbnb2, }\FunctionTok{aes}\NormalTok{(}\FunctionTok{log}\NormalTok{(price)))}\SpecialCharTok{+} \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \FloatTok{0.25}\NormalTok{, }\AttributeTok{color =} \StringTok{"light yellow"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"orange"}\NormalTok{)}\SpecialCharTok{+} \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Distribution of room price"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{ylab}\NormalTok{ (}\StringTok{"Frequency of transformedprice"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{xlab}\NormalTok{(}\StringTok{"log(Price)"}\NormalTok{) }\SpecialCharTok{+} \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{0}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}\SpecialCharTok{+} \FunctionTok{xlim}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 21 rows containing non-finite values (`stat_bin()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 2 rows containing missing values (`geom_bar()`).
+\end{verbatim}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-13-1.pdf}
+*Visualize the relationship between logprice and minimum nights
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(price\_t, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ logprice, }\AttributeTok{y =}\NormalTok{ minimum\_nights)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{stat\_smooth}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = "cs")'
+\end{verbatim}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-14-1.pdf}
+\emph{As we can see from the graph above, the graph does not suggest a
+linearly increasing relationship between the logprice and minimum
+nights. So the assumption that lower price may lead to more days to stay
+may not be a right assumption \#\#Modeling }Doing model 1 of Simple
+Linear Regression
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_1 }\OtherTok{=} \FunctionTok{lm}\NormalTok{(logprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ room\_type }\SpecialCharTok{+}\NormalTok{ number\_of\_reviews }\SpecialCharTok{+}\NormalTok{ minimum\_nights }\SpecialCharTok{+}\NormalTok{ number\_of\_reviews\_ltm}\SpecialCharTok{+}\NormalTok{reviews\_per\_month}\SpecialCharTok{+}\NormalTok{ calculated\_host\_listings\_count}\SpecialCharTok{+}\NormalTok{availability\_365, }\AttributeTok{data =}\NormalTok{ price\_t) }
+\FunctionTok{summary}\NormalTok{(model\_1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = logprice ~ room_type + number_of_reviews + minimum_nights + 
+##     number_of_reviews_ltm + reviews_per_month + calculated_host_listings_count + 
+##     availability_365, data = price_t)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6730 -0.3951 -0.0537  0.3137  4.8137 
+## 
+## Coefficients:
+##                                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                     5.395e+00  1.316e-02 409.993  < 2e-16 ***
+## room_typeHotel room             3.072e-01  7.129e-02   4.310 1.65e-05 ***
+## room_typePrivate room          -8.861e-01  1.146e-02 -77.332  < 2e-16 ***
+## room_typeShared room           -1.656e+00  9.359e-02 -17.695  < 2e-16 ***
+## number_of_reviews              -6.136e-04  7.448e-05  -8.240  < 2e-16 ***
+## minimum_nights                 -3.825e-03  1.623e-04 -23.568  < 2e-16 ***
+## number_of_reviews_ltm           3.240e-03  4.094e-04   7.913 2.75e-15 ***
+## reviews_per_month              -1.201e-02  4.877e-03  -2.463 0.013780 *  
+## calculated_host_listings_count  4.316e-04  1.273e-04   3.390 0.000702 ***
+## availability_365                3.047e-04  4.397e-05   6.929 4.48e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.5654 on 10947 degrees of freedom
+## Multiple R-squared:  0.4212, Adjusted R-squared:  0.4207 
+## F-statistic: 885.1 on 9 and 10947 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(model\_1)}\CommentTok{\#create a residual plot and Q{-}Q plot.}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-15-2.pdf}
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-15-3.pdf}
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-15-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coefplot}\NormalTok{(model\_1,}\AttributeTok{title =} \StringTok{"Coefficient plot for model 1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-15-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_2 }\OtherTok{=} \FunctionTok{lmer}\NormalTok{(logprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ room\_type }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{|}\NormalTok{neighbourhood)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{  price\_t)}
+\FunctionTok{summary}\NormalTok{(model\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linear mixed model fit by REML. t-tests use Satterthwaite's method [
+## lmerModLmerTest]
+## Formula: logprice ~ room_type + (1 | neighbourhood) - 1
+##    Data: price_t
+## 
+## REML criterion at convergence: 18350.9
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -6.6840 -0.6762 -0.0843  0.5374  8.8967 
+## 
+## Random effects:
+##  Groups        Name        Variance Std.Dev.
+##  neighbourhood (Intercept) 0.03853  0.1963  
+##  Residual                  0.30868  0.5556  
+## Number of obs: 10957, groups:  neighbourhood, 39
+## 
+## Fixed effects:
+##                           Estimate Std. Error        df t value Pr(>|t|)    
+## room_typeEntire home/apt 5.360e+00  3.324e-02 4.006e+01  161.26   <2e-16 ***
+## room_typeHotel room      5.713e+00  7.751e-02 1.096e+03   73.71   <2e-16 ***
+## room_typePrivate room    4.545e+00  3.378e-02 4.265e+01  134.55   <2e-16 ***
+## room_typeShared room     3.540e+00  9.734e-02 2.412e+03   36.37   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Correlation of Fixed Effects:
+##             rm_Eh/ rm_tHr rm_tPr
+## rm_typHtlrm 0.418               
+## rm_typPrvtr 0.935  0.402        
+## rm_typShrdr 0.325  0.138  0.322
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coefplot}\NormalTok{(model\_2, }\AttributeTok{title =} \StringTok{"Coefficient plot for model 2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_3 }\OtherTok{=} \FunctionTok{lmer}\NormalTok{(logprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ room\_type }\SpecialCharTok{+}\NormalTok{ minimum\_nights }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{0} \SpecialCharTok{+}\NormalTok{ minimum\_nights}\SpecialCharTok{|}\NormalTok{neighbourhood)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{  price\_t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+##  - Rescale variables?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#display(model3)}
+\FunctionTok{coefplot}\NormalTok{(model\_3,}\AttributeTok{title =} \StringTok{"Coefficient plot for model 3"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model\_4 }\OtherTok{=} \FunctionTok{lmer}\NormalTok{(logprice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ room\_type }\SpecialCharTok{+}\NormalTok{ minimum\_nights }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ minimum\_nights}\SpecialCharTok{|}\NormalTok{neighbourhood)}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{data =}\NormalTok{  price\_t)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, :
+## Model failed to converge with max|grad| = 23.7985 (tol = 0.002, component 1)
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv, : Model is nearly unidentifiable: very large eigenvalue
+##  - Rescale variables?
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#display(model3)}
+\FunctionTok{coefplot}\NormalTok{(model\_4,}\AttributeTok{title =} \StringTok{"Coefficient plot for model 4"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{anova}\NormalTok{(model\_2, model\_3,model\_4,}\AttributeTok{refit =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#anova test.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data: price_t
+## Models:
+## model_2: logprice ~ room_type + (1 | neighbourhood) - 1
+## model_3: logprice ~ room_type + minimum_nights + (0 + minimum_nights | neighbourhood) - 1
+## model_4: logprice ~ room_type + minimum_nights + (1 + minimum_nights | neighbourhood) - 1
+##         npar   AIC   BIC  logLik deviance  Chisq Df Pr(>Chisq)    
+## model_2    6 18363 18407 -9175.5    18351                         
+## model_3    7 18371 18422 -9178.4    18357   0.00  1          1    
+## model_4    9 17583 17649 -8782.6    17565 791.53  2     <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{fitted}\NormalTok{(model\_4),}\FunctionTok{resid}\NormalTok{(model\_4,}\AttributeTok{type=}\StringTok{"pearson"}\NormalTok{),}\AttributeTok{col=}\StringTok{"orange"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Fig 13. residual plot for model4"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{678-final-2.0_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\end{document}
