@@ -1,0 +1,189 @@
+---
+title: "678 final"
+author: "xiaoyanbin Cai"
+date: "2022-12-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Abstract
+Since I personally love traveling a lot, I chose the database of Audemars Piguet as my project data. I wanted to know if the price of a home could be influenced by other factors. Such as the type of house or the location of the house. So in this assignment, I will use EDA and Multilevel linear model to predict the relationship between house price and other coefficients.
+
+### Introduction
+I decided to choose the Airbnb data set that related to Massachusetts as my final project data resource. Since I would like to know how price and other variables will correlated. The whole data set will consist of following parts"id","host_id","neighbourhood","room_type","price","minimum_price","number_of_reviews","calculated_host_listings_count","availability_365","number_of_reviews_ltm". Firstly I will do the visualization to find out which variable has a strong relationship with price and then I will do the multilevel regression.
+# Loading library
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(lme4)          
+library(lmerTest) 
+library(plyr) 
+library(kableExtra)
+library(dplyr)
+library(leaflet)
+library(coefplot)
+library(tinytex)
+```
+### Method
+
+## Importing data
+```{r message=FALSE, echo=FALSE, warning=FALSE}
+airbnb1 <- read.csv("~/Desktop/678-final-project/airbnb.csv")#Import data
+airbnb2 <- read.csv("~/Desktop/678-final-project/13.6.2022.csv")
+airbnb3 <- read.csv("~/Desktop/678-final-project/20.3.2022.csv")
+airbnb4 <- read.csv("~/Desktop/678-final-project/17.12.2021.csv")
+airbnb5 = dplyr::bind_rows(airbnb1,airbnb2,airbnb3,airbnb4)#to combine all the airbnb data in MA
+summary(airbnb5)#check the summary of the raw data
+#As we can see from summary, there're some NA values in neighbourhood_group and reviews_per_month.
+
+
+type <- unique(airbnb5$neighbourhood)#to see how many groups are in the data
+head(airbnb5)
+```
+## Basic data information and data cleaning
+```{r echo=FALSE}
+kable(head(airbnb5[,c(1:3,6,9:11:12,14:17)]))#extract the main data columns that I need to analyze
+airbnb6 = airbnb5[,c(1:3,6,9:11:12,14:17)]
+summary(airbnb6)#check the summary of the new data frame
+Airbnb = na.omit(airbnb6)#elimate NA values in data set
+Airbnb <- Airbnb %>%
+  filter(Airbnb$price > 0)
+Airbnb2 <- Airbnb %>%
+  filter(Airbnb$number_of_reviews > 0)
+Airbnb2$id = as.character(Airbnb2$id)
+Airbnb2$host_id = as.character(Airbnb2$host_id)
+length(Airbnb2$price)
+```
+* As we can see from new data frame summary, there're some NA values in neighbourhood_group and reviews_per_month. So that I need to elimate all the NA values that include in price and number_of_reviews. After that we get 10957 results in total
+
+## Table about room type
+```{r echo=FALSE}
+kable(table(Airbnb2$room_type))
+```
+* As we can see from above,home/apt has the largest number in the table which is 6937. So that we can see how the relationship between the most-used room type and the price.
+
+## EDA
+```{r echo=FALSE}
+plot1 <- ggplot(data = Airbnb2, aes(x = number_of_reviews, y = price, color = room_type)) +
+    geom_line()+
+  ggtitle("Relationship between price and # of reviews of different room type")
+show(plot1)
+   
+plot2 <- ggplot(data = Airbnb2, aes(x = number_of_reviews, y = price)) +
+    geom_line() +
+    facet_wrap(facets = vars(room_type))  
+show(plot2)
+```
+* I made two linear graphs about relation between price and number of reviews of different room types. As we can see from 'plot2'entire home/apt has the most number of reviews and change of price is relative stable than that of other room type. And for shared room which has the most small number of reviews and the price of shared room is almost the same.
+
+```{r echo=FALSE}
+#Fig of average number of reviews per neighbourhood
+ggplot(data=Airbnb2, aes(x=neighbourhood, y= number_of_reviews))+geom_bar(stat = "identity",  fill = "pink") + ggtitle("Average number of reviews per neighbourhood")+ylab("Frequency of reviews") + theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+* As we can see from the graph above, Allston has the highest number of reviews and East Boston is second highest and Dorchester is the third one.
+
+* Fig of average price per neighbourhood
+```{r echo=FALSE}
+ggplot(data=Airbnb2, aes(x=(neighbourhood), y= price))+geom_bar(stat = "identity",  fill = "pink") + ggtitle("Average price per neighbourhood")+ylab("Average price") + theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+* Fig of distribution of number of reviews
+```{r echo=FALSE}
+ggplot(Airbnb2, aes(number_of_reviews))+ geom_histogram(binwidth = 5,color = "black", fill = "sky blue")+ ggtitle("Distribution of number of reviews") + ylab ("frequency of reviews") + xlab("number of review")+ theme(axis.text.x = element_text(angle = 0, hjust = 1))+ xlim(0,200)
+```
+* According to the graph above, we can see that the majority of airbnb have less than 100 reviews 
+
+* Using leaflet to make a map of Airbnb in MA
+```{r echo=FALSE}
+Boston_area_map <- leaflet(airbnb5) %>%
+  addTiles() %>%
+  addCircleMarkers(lng = airbnb5$longitude,
+                   lat = airbnb5$latitude)
+show(Boston_area_map)
+```
+
+* To see how the correlation between price and minimum nights. Because higher price may affect the number of reviews.
+```{r echo=FALSE}
+cor <- cor.test(Airbnb2$minimum_nights,Airbnb2$price,
+                method="pearson")
+cor
+```
+* The p-value is 2.105e-14. So it reject the null hypothesis. So the correlation between price and minimum nights is significant. I might want to add the correlation term into the model to test whether this influence is significant.
+
+* Distribution of room price
+```{r echo=FALSE}
+ggplot(Airbnb2, aes(price))+ geom_histogram(binwidth = 50, color = "light yellow", fill = "orange")+ ggtitle(" Distribution of room price") + ylab ("Frequency of price") + xlab("Price") + theme(axis.text.x = element_text(angle = 0, hjust = 1))+xlim(0,1000)
+```
+
+* Since from the graph above, price does not present as normal distribution so that I need to do the log transformation.
+```{r echo=FALSE}
+price_t <- Airbnb2%>%
+  mutate(logprice = log(price))
+ggplot(Airbnb2, aes(log(price)))+ geom_histogram(binwidth = 0.25, color = "light yellow", fill = "orange")+ ggtitle("Distribution of room price") + ylab ("Frequency of transformedprice") + xlab("log(Price)") + theme(axis.text.x = element_text(angle = 0, hjust = 1))+ xlim(2,8)
+```
+* Visualize the relationship between logprice and minimum nights
+```{r echo=FALSE}
+ggplot(price_t, aes(x = logprice, y = minimum_nights)) +
+  geom_point() +
+  stat_smooth()
+```
+* As we can see from the graph above, the graph does not suggest a linearly increasing relationship between the logprice and minimum nights. So the assumption that lower price may lead to more days to stay may not be a right assumption
+## Modeling
+* Doing model 1 of Simple Linear Regression
+```{r echo=FALSE}
+model_1 = lm(logprice ~ room_type + number_of_reviews + minimum_nights + number_of_reviews_ltm+reviews_per_month+ calculated_host_listings_count+availability_365, data = price_t) 
+summary(model_1)
+plot(model_1)
+coefplot(model_1,title = "Coefficient plot for model 1")
+```
+* We can see that R-square is 0.42 so it does not will fitted. We can see from residual graph, there're some dots are having big residuals. The rest of points are symmetric distributed around the line h=0. We can see from the QQ plot, the model overestimate the low values and underestimate the high value. The coefficient plot tell us that coefficients "availability_365","calculated_host_listings_count","reviews_per_month","number_of_reviews_ltm","minimum_nights","number_of_reviews" are fall on zero point. So we need to eliminate those values in the mutilevel regression model.
+
+```{r echo=FALSE}
+model_2 = lmer(logprice ~ room_type + (1|neighbourhood)-1, data =  price_t)
+summary(model_2)
+coefplot(model_2, title = "Coefficient plot for model 2")
+```
+* Afer we get rid of non-significant terms, we find out room type have the most obvious correlation with price.
+
+* Multilevel linear model with random slope
+```{r echo=FALSE}
+model_3 = lmer(logprice ~ room_type + minimum_nights + (0 + minimum_nights|neighbourhood)-1, data =  price_t)
+summary(model_3)
+coefplot(model_3,title = "Coefficient plot for model 3")
+```
+* We can see from modle 3, room type still be the most obvious coefficients with price. Minimum nights still lays on the point zero.
+
+* Multilevel linear model with random slope and random intercept
+```{r echo=FALSE}
+model_4 = lmer(logprice ~ room_type + minimum_nights + (1 + minimum_nights|neighbourhood)-1, data =  price_t)
+summary(model_4)
+coefplot(model_4,title = "Coefficient plot for model 4")
+```
+* For modle 4, room type still be the most significance predictors.
+
+### Result
+* Model interpretation
+```{r echo=FALSE}
+anova(model_2, model_3,model_4,refit = FALSE) #anova test.
+plot(fitted(model_4),resid(model_4,type="pearson"),col="orange", main = "Residual plot for model4")
+abline(h =0)
+```
+
+### Disscussion
+* We can see from the ANOVA table, three tables are highly different since p-value is less than 0.05. Since model 4 has the lowest deviance so model 4 is the best model among other three models. Residual plot is also spread symmetrically around line h=0 
+
+### Appendix
+* Visualize the relationship between logprice and minimum nights
+```{r echo=FALSE}
+ggplot(price_t, aes(x = logprice, y = minimum_nights)) +
+  geom_point() +
+  stat_smooth()
+```
+* As we can see from the graph above, the graph does not suggest a linearly increasing relationship between the logprice and minimum nights. So the assumption that lower price may lead to more days to stay may not be a right assumption.
+
+### Supplement
+* http://insideairbnb.com/get-the-data/
+* https://quantdev.ssri.psu.edu/tutorials/r-bootcamp-introduction-multilevel-model-and-interactions
+
